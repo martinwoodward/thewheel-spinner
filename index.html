@@ -790,9 +790,9 @@
                 // Calculate which segment is actually under the pointer
                 // Normalize rotation to 0-360
                 const normalizedRotation = ((targetRotation % 360) + 360) % 360;
-                // When wheel rotates clockwise, segment index decreases at pointer
+                // When wheel rotates clockwise, we need to find which segment is at top
                 // At rotation 0, segment 0 is at top. At rotation = segmentAngle, segment (n-1) is at top
-                const winningIndex = Math.floor(((360 - normalizedRotation + segmentAngle / 2) % 360) / segmentAngle) % segments.length;
+                const winningIndex = Math.floor((360 - normalizedRotation) / segmentAngle) % segments.length;
                 const winningSegment = segments[winningIndex];
                 
                 // Show result
