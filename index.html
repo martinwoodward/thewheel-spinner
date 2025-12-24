@@ -448,6 +448,49 @@
             max-width: 500px;
         }
 
+        /* Fullscreen button */
+        .fullscreen-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+            background: rgba(255, 215, 0, 0.2);
+            border: 2px solid #ffd700;
+            color: #ffd700;
+            padding: 12px 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .fullscreen-btn:hover {
+            background: rgba(255, 215, 0, 0.4);
+            transform: scale(1.1);
+        }
+
+        .fullscreen-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* Hide in fullscreen */
+        :fullscreen .fullscreen-btn svg.expand,
+        :-webkit-full-screen .fullscreen-btn svg.expand {
+            display: none;
+        }
+
+        .fullscreen-btn svg.collapse {
+            display: none;
+        }
+
+        :fullscreen .fullscreen-btn svg.collapse,
+        :-webkit-full-screen .fullscreen-btn svg.collapse {
+            display: block;
+        }
+
         /* Responsive */
         @media (max-width: 500px) {
             .wheel-outer {
@@ -477,6 +520,16 @@
     </style>
 </head>
 <body>
+    <!-- Fullscreen button -->
+    <button class="fullscreen-btn" id="fullscreenBtn" onclick="toggleFullscreen()" title="Toggle Fullscreen">
+        <svg class="expand" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
+        </svg>
+        <svg class="collapse" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 14h6v6m10-10h-6V4m0 6l7-7M3 21l7-7"/>
+        </svg>
+    </button>
+
     <!-- Animated background -->
     <div class="particles" id="particles"></div>
     <div class="spotlight spotlight-1"></div>
@@ -845,6 +898,28 @@
                     // Remove after animation
                     setTimeout(() => confetti.remove(), 4000);
                 }, Math.random() * 500);
+            }
+        }
+
+        // Toggle fullscreen
+        function toggleFullscreen() {
+            if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+                // Enter fullscreen
+                const elem = document.documentElement;
+                if (elem.requestFullscreen) {
+                    elem.requestFullscreen();
+                } else if (elem.webkitRequestFullscreen) {
+                    // Safari/iOS
+                    elem.webkitRequestFullscreen();
+                }
+            } else {
+                // Exit fullscreen
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.webkitExitFullscreen) {
+                    // Safari/iOS
+                    document.webkitExitFullscreen();
+                }
             }
         }
 
