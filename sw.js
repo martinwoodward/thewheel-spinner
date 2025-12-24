@@ -1,18 +1,18 @@
 const CACHE_NAME = 'thewheel-spinner-v1';
 const urlsToCache = [
-  '/',
-  '/index.html',
-  '/TheWheelLogo.png',
-  '/TheWheelTheme.mp3',
-  '/manifest.json',
-  '/icons/icon-72.png',
-  '/icons/icon-96.png',
-  '/icons/icon-128.png',
-  '/icons/icon-144.png',
-  '/icons/icon-152.png',
-  '/icons/icon-192.png',
-  '/icons/icon-384.png',
-  '/icons/icon-512.png'
+  './',
+  './index.html',
+  './TheWheelLogo.png',
+  './TheWheelTheme.mp3',
+  './manifest.json',
+  './icons/icon-72.png',
+  './icons/icon-96.png',
+  './icons/icon-128.png',
+  './icons/icon-144.png',
+  './icons/icon-152.png',
+  './icons/icon-192.png',
+  './icons/icon-384.png',
+  './icons/icon-512.png'
 ];
 
 // Install event - cache all resources
@@ -69,7 +69,7 @@ self.addEventListener('fetch', event => {
       .catch(() => {
         // Offline fallback - return cached index for navigation requests
         if (event.request.mode === 'navigate') {
-          return caches.match('/index.html');
+          return caches.match('./index.html');
         }
       })
   );

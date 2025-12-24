@@ -2,7 +2,7 @@
   "name": "The Wheel Spinner",
   "short_name": "The Wheel",
   "description": "Digital game spinner for The Wheel board game",
-  "start_url": "/",
+  "start_url": "./",
   "display": "standalone",
   "background_color": "#0a0a1a",
   "theme_color": "#ffd700",
